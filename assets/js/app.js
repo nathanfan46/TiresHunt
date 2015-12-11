@@ -106,10 +106,28 @@ angular.module('tiresApp').controller('DropdownCtrl', function ($scope, $http, $
 		$http.get('api/vehicleMakes?Year=' + $scope.selectedYear.name ).success(function(data){
 			$log.log(data);
 			$scope.vehicleMakes = data;
-			$scope.disabledModel = true;
-			$scope.disabledOption = true;
-			$scope.disabledBody = true;
+
+			if($scope.selectedMake.name != 'Make')
+			{
+				$scope.disabledMake = true;
+				$scope.disabledModel = true;
+				$scope.disabledOption = true;
+				$scope.disabledBody = true;
+
+				$scope.selectedMake = {'name' : 'Make'};
+				$scope.selectedModel = {'name' : 'Model'};
+				$scope.selectedBody = {'name' : 'Body'};
+				$scope.selectedOption = {'name' : 'Option'};
+
+				$scope.optionMakes = [];
+				$scope.optionModels = [];
+				$scope.optionBodies = [];
+				$scope.optionOptions = [];
+				$scope.vehicleTires = [];
+			}			
+
 			$scope.disabledMake = false;
+
 			for(var i in $scope.vehicleMakes) {
 				$log.log($scope.vehicleMakes[i].Attribute);
 				$scope.optionMakes.push({'name' : $scope.vehicleMakes[i].Attribute, 'isSelected' : false});
@@ -123,10 +141,26 @@ angular.module('tiresApp').controller('DropdownCtrl', function ($scope, $http, $
    		$scope.selectedMake.name = $optionMake.name;
 		$http.get('api/vehicleModels?Year=' + $scope.selectedYear.name + '&Make=' + $scope.selectedMake.name).success(function(data){
 			$log.log(data);
-			$scope.vehicleModels = data;
-			$scope.disabledBody = true;
-			$scope.disabledOption = true;
+			$scope.vehicleModels = data;			
+
+			if($scope.selectedModel.name != 'Model')
+			{
+				$scope.selectedModel = {'name' : 'Model'};
+				$scope.selectedBody = {'name' : 'Body'};
+				$scope.selectedOption = {'name' : 'Option'};
+
+				$scope.optionModels = [];
+				$scope.optionBodies = [];
+				$scope.optionOptions = [];
+				$scope.vehicleTires = [];
+
+				$scope.disabledBody = true;
+				$scope.disabledOption = true;
+				$scope.disabledModel = true;
+			}
+
 			$scope.disabledModel = false;
+
 			for(var i in $scope.vehicleModels) {
 				$log.log($scope.vehicleModels[i].Attribute);
 				$scope.optionModels.push({'name' : $scope.vehicleModels[i].Attribute, 'isSelected' : false});
@@ -143,7 +177,20 @@ angular.module('tiresApp').controller('DropdownCtrl', function ($scope, $http, $
 		$http.get('api/vehicleBodies?Year=' + $scope.selectedYear.name + '&Make=' + $scope.selectedMake.name + '&Model=' + $scope.selectedModel.name).success(function(data){
 			$log.log(data);
 			$scope.vehicleBodies = data;
-			$scope.disabledOption = true;
+
+			if($scope.selectedBody.name != 'Body')
+			{
+				$scope.selectedBody = {'name' : 'Body'};
+				$scope.selectedOption = {'name' : 'Option'};
+
+				$scope.optionBodies = [];
+				$scope.optionOptions = [];
+				$scope.vehicleTires = [];
+
+				$scope.disabledBody = true;
+				$scope.disabledOption = true;
+			}
+
 			$scope.disabledBody = false;
 			for(var i in $scope.vehicleBodies) {
 				$log.log($scope.vehicleBodies[i].Attribute);
@@ -159,6 +206,17 @@ angular.module('tiresApp').controller('DropdownCtrl', function ($scope, $http, $
 		$http.get('api/vehicleOptions?Year=' + $scope.selectedYear.name + '&Make=' + $scope.selectedMake.name + '&Model=' + $scope.selectedModel.name + '&Body=' + $scope.selectedBody.name).success(function(data){
 			$log.log(data);
 			$scope.vehicleOptions = data;
+
+			if($scope.selectedOption.name != 'Option')
+			{
+				$scope.selectedOption = {'name' : 'Option'};
+
+				$scope.optionOptions = [];
+				$scope.vehicleTires = [];
+
+				$scope.disabledOption = true;
+			}
+
 			$scope.disabledOption = false;
 			for(var i in $scope.vehicleOptions) {
 				$log.log($scope.vehicleOptions[i].Attribute);
