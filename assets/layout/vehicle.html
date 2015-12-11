@@ -1,0 +1,82 @@
+<div ng-controller="DropdownCtrl">
+    <hr />
+    <!-- Simple dropdown -->
+    <!-- Split button -->
+    <div class="btn-group" uib-dropdown>
+      <button id="split-button-1" type="button" class="btn btn-primary">{{selectedYear.name}}</button>
+      <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+        <span class="caret"></span>
+        <span class="sr-only">Split button!</span>
+      </button>
+      <ul class="uib-dropdown-menu" role="menu" aria-labelledby="split-button">
+        <li role="menuitem" ng-click="selectYear(optionYears[$index])" data-ng-repeat="optionYear in optionYears track by $index"><a href="#">{{optionYear.name}}</a></li>
+      </ul>
+    </div>
+
+    <div class="btn-group" uib-dropdown>
+      <button id="split-button-2" type="button" class="btn btn-primary" ng-disabled="disabledMake">{{selectedMake.name}}</button>
+      <button type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabledMake">
+        <span class="caret"></span>
+        <span class="sr-only">Split button!</span>
+      </button>
+      <ul class="uib-dropdown-menu" role="menu" aria-labelledby="split-button">
+        <li role="menuitem" ng-click="selectMake(optionMakes[$index])" data-ng-repeat="optionMake in optionMakes track by $index"><a href="#">{{optionMake.name}}</a></li>
+      </ul>
+    </div>
+
+    <div class="btn-group" uib-dropdown>
+      <button id="split-button-3" type="button" class="btn btn-primary" ng-disabled="disabledModel">{{selectedModel.name}}</button>
+      <button type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabledModel">
+        <span class="caret"></span>
+        <span class="sr-only">Split button!</span>
+      </button>
+      <ul class="uib-dropdown-menu" role="menu" aria-labelledby="split-button">
+        <li role="menuitem" ng-click="selectModel(optionModels[$index])" data-ng-repeat="optionModel in optionModels track by $index"><a href="#">{{optionModel.name}}</a></li>
+      </ul>
+    </div>
+
+    <div class="btn-group" uib-dropdown>
+      <button id="split-button-4" type="button" class="btn btn-primary" ng-disabled="disabledBody">{{selectedBody.name}}</button>
+      <button type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabledBody">
+        <span class="caret"></span>
+        <span class="sr-only">Split button!</span>
+      </button>
+      <ul class="uib-dropdown-menu" role="menu" aria-labelledby="split-button">
+        <li role="menuitem" ng-click="selectBody(optionBodies[$index])" data-ng-repeat="optionBody in optionBodies track by $index"><a href="#">{{optionBody.name}}</a></li>
+      </ul>
+    </div>
+
+    <div class="btn-group" uib-dropdown>
+      <button id="split-button-5" type="button" class="btn btn-primary" ng-disabled="disabledOption">{{selectedOption.name}}</button>
+      <button type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabledOption">
+        <span class="caret"></span>
+        <span class="sr-only">Split button!</span>
+      </button>
+      <ul class="uib-dropdown-menu" role="menu" aria-labelledby="split-button">
+        <li role="menuitem" ng-click="selectOption(optionOptions[$index])" data-ng-repeat="optionOption in optionOptions track by $index"><a href="#">{{optionOption.name}}</a></li>
+      </ul>
+    </div>
+
+    <div class="col-md-12" data-ng-show="vehicleTires.length > 0">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th style="width:50px">#</th>
+            <th style="width:50px">Brand & Model</th>
+            <th style="width:80px; text-align:center">Description</th>
+            <th style="width:80px; text-align:center">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="vehicleTire in vehicleTires track by $index">
+            <td>{{ $index + 1 }}</td>
+            <td style="text-align:center">{{ vehicleTire.brandModel }}</td>
+            <td style="text-align:left">{{ vehicleTire.description }}</td>
+            <td style="text-align:center">{{ vehicleTire.price }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+</div>
