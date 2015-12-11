@@ -342,8 +342,22 @@ class Api extends REST_Controller
 			$doc->loadHTML($bodyString);
 			$savedVehicle = $doc->getElementById('savedVehicle')->getAttribute('value');
 			$tireSize = $doc->getElementById('radSize1')->getAttribute('value');
+			//echo $bodyString;
+			//$vehicleId = $doc->getElementById('byVehicleStep2')->getElementsByTagName('id')->item(0)->getAttribute('value');
+			$formStep2Inputs = $doc->getElementById('byVehicleStep2')->getElementsByTagName('input');
+			foreach($formStep2Inputs as $node){
+			    if ( $node->getAttribute('name') == 'id')
+			    {
+			    	$vehicleId = $node->getAttribute('value');
+			    	//print $node->getAttribute('name') . "\n";
+			    } 
+			    else
+			    {
+			    	//print $node->getAttribute('name') . "\n";
+			    }
+			}
 
-			$queryUrl = "http://tires.canadiantire.ca/en/tires/search/?vehicle=" . rawurlencode($savedVehicle) . "_" . rawurlencode($tireSize) . "&id=139535&runFlatAvailable=false";
+			$queryUrl = "http://tires.canadiantire.ca/en/tires/search/?vehicle=" . rawurlencode($savedVehicle) . "_" . rawurlencode($tireSize) . "&id=" . $vehicleId . "&runFlatAvailable=false"; 
 
 			$response = $client->request('GET', $queryUrl, [
 			    'headers' => [
